@@ -1,0 +1,9 @@
+{
+  "name": "rdx",
+  "version": "1.0.0",
+  "description": "The rdx command line tool react redux utility",
+  "main": "index.js",
+  "repository": "git@github.com:hayashiki/redux_generator.git",
+  "author": "hayashiki <hayashida.masayuki.app@gmail.com>",
+  "license": "MIT"
+}
