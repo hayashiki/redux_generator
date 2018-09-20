@@ -1,0 +1,17 @@
+{
+  "name": "rdx",
+  "version": "1.0.0",
+  "description": "The rdx command line tool react redux utility",
+  "main": "index.js",
+  "repository": "git@github.com:hayashiki/redux_generator.git",
+  "author": "hayashiki <hayashida.masayuki.app@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-jest": "^23.6.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-power-assert": "^3.0.0",
+    "chalk": "^2.4.1",
+    "commander": "^2.18.0"
+  }
+}
