@@ -1,0 +1,13 @@
+{
+  "redux": "latest",
+  "react-redux": "latest",
+  "redux-logger": "latest",
+  "redux-persist": "latest",
+  "react-router-dom": "latest",
+  "connected-react-router": "latest",
+  "redux-actions": "latest",
+  "redux-thunk": "latest",
+  "history": "latest",
+  "react-router-redux": "latest",
+  "styled-components": "latest"
+}
