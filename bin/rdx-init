@@ -1,0 +1,14 @@
+#!/usr/bin/env babel-node
+
+import program from 'commander';
+import generate from '../src/generate';
+import * as path from 'path';
+
+const { version } = require(path.join(__dirname, '../package.json'));
+
+program.version(version)
+  .parse(process.argv);
+
+generate(program, {
+  cwd: process.cwd(),
+});
