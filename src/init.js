@@ -2,6 +2,7 @@ import vfs from 'vinyl-fs';
 import { join, basename } from 'path';
 import through from 'through2';
 import { installPackage } from './install';
+import { info, error, success } from './log';
 
 const init = () => {
   const dest = process.cwd();
@@ -11,6 +12,7 @@ const init = () => {
     .pipe(template(dest, cwd))
     .pipe(vfs.dest(dest))
     .on('end', () => {
+      info('install package');
       installPackage()
     })
 }
@@ -20,6 +22,7 @@ const template = (dest, cwd) => {
     if (!file.stat.isFile()) {
       return cb();
     }
+    info('create -> ' + file.path.replace(cwd + '/', ''));
     this.push(file);
     cb();
   });
