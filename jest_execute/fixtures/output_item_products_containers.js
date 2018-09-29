@@ -1,7 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
-import * as itemProductActions from '../../redux/itemProduct/action'
+import * as itemProductActions from '../../../redux/itemProduct/ducks'
 
 class ItemProduct extends React.Component {
 
