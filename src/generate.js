@@ -6,6 +6,18 @@ import { existsSync, readFileSync } from 'fs';
 import { outputFileSync, removeSync } from 'fs-extra';
 import Handlebars from 'handlebars';
 
+const singularedCamelCase = name => {
+  return camelcase(pluralize.singular(name))
+}
+
+const singularedUpperCamelCase = name => {
+  return upperCamelCase(pluralize.singular(name));
+}
+
+const singularedUpperCase = name => {
+  return pluralize.singular(name).toUpperCase();
+}
+
 const generate = (program, {cwd}) => {
   const [type, name] = program.args;
   try {
@@ -19,23 +31,26 @@ const generate = (program, {cwd}) => {
       (() => {
         const defaultBase = 'src';
         const base = defaultBase
-        const componentName = camelcase(pluralize.singular(name));
-        const ComponentName = upperCamelCase(pluralize.singular(name));
-        const COMPONENT_NAME = pluralize.singular(name).toUpperCase();
+        const componentName = singularedCamelCase(name);
+        const ComponentName = singularedUpperCamelCase(name)
+        const COMPONENT_NAME = singularedUpperCase(name)
         const componentPath = `${base}/components/organisms/${componentName}/index.js`;
+        const reduxPath = `${base}/redux/${componentName}/ducks.js`;
+
         const payload = {
-          sourcePath: cwd,
-          filePath: componentPath,
           componentName,
           ComponentName,
           COMPONENT_NAME
         }
 
-        const template = createReduxContainers(payload)
-        const source = template(payload);
+        const containerTemplate = createReduxContainers();
+        const containerSource = containerTemplate(payload);
+        const reduxTemplate = createReduxActions();
+        const reduxSource = reduxTemplate(payload);
 
-        // outputFileSync(componentPath, source, 'utf-8');
-              })();
+        outputFileSync(componentPath, containerSource, 'utf-8');
+        outputFileSync(reduxPath, reduxSource, 'utf-8');
+      })();
       break;
       default:
         return null
@@ -50,6 +65,14 @@ const generate = (program, {cwd}) => {
 
 export const createReduxContainers = () => {
   const filePath = join(__dirname, `../boilerplates/reduxContainers.create.handlebars`)
+  // todo isExists?
+  // existsSync(filePath)
+  const source = readFileSync(filePath, 'utf-8');
+  return Handlebars.compile(source);
+}
+
+export const createReduxActions = () => {
+  const filePath = join(__dirname, `../boilerplates/reduxActions.create.handlebars`)
   // todo isExists?
   // existsSync(filePath)
   const source = readFileSync(filePath, 'utf-8');
