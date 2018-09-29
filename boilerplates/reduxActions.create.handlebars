@@ -1,0 +1,46 @@
+import { createAction, handleActions } from 'redux-actions'
+
+export const types = {
+  FETCH_{{COMPONENT_NAME}}: 'FaaETCH_{{COMPONENT_NAME}}',
+  FETCH_{{COMPONENT_NAME}}_SUCCESS: 'FETCH_ITEMS_{{COMPONENT_NAME}}',
+  CREATE_{{COMPONENT_NAME}}: 'CREATE_{{COMPONENT_NAME}}',
+  UPDATE_{{COMPONENT_NAME}}: 'UPDATE_{{COMPONENT_NAME}}',
+  DELETE_{{COMPONENT_NAME}}: 'DELETE_{{COMPONENT_NAME}}',
+}
+
+export const get{{ComponentName}} = createAction(types.FETCH_{{COMPONENT_NAME}})
+export const get{{ComponentName}}Success = createAction(types.FETCH_ITEMS_{{COMPONENT_NAME}})
+export const create{{ComponentName}} = createAction(types.CREATE_{{COMPONENT_NAME}})
+export const update{{ComponentName}} = createAction(types.UPDATE_{{COMPONENT_NAME}})
+export const delete{{ComponentName}} = createAction(types.DELETE_{{COMPONENT_NAME}})
+
+export default handleActions(
+  {
+    [types.FETCH_{{COMPONENT_NAME}}_SUCCESS]: (state, action) => {
+      return {
+        ...state,
+        {{componentName}}: action.payload
+      }
+    },
+    [types.CREATE_{{COMPONENT_NAME}}]: (state, action) => {
+      return {
+        ...state,
+        {{componentName}}: action.payload
+      }
+    },
+    [types.UPDATE_{{COMPONENT_NAME}}]: (state, action) => {
+      return {
+        ...state,
+        {{componentName}}: action.payload
+      }
+    },
+    [types.DELETE_{{COMPONENT_NAME}}]: (state, action) => {
+      return {
+        ...state,
+        {{componentName}}: action.payload
+      }
+    }
+  },
+  initialState
+)
+
